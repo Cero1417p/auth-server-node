@@ -1,6 +1,8 @@
 import Role from "../models/roles.js";
 export const createRoles = async () => {
     try {
+        //  esto no deberia hacer
+        //  cada recarga
         const count = await Role.estimatedDocumentCount();
         if (count > 0) return "roles already exist";
         const values = await Promise.all([

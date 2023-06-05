@@ -7,10 +7,16 @@ import {verifySignUp}  from "../middlewares/index.js";
 router.route("/uno").get((req, res) => {
     res.send('Hola mundo routes')
 })
+let objetoJSON ={
+    "email":"prueba3",
+    "password":"prueba3",
+    "name":"prueba3",
+    "roles":["admin","user",""]
+}
 router.get(
     "/sign-up",
     (req,res)=>{
-        res.send("<div>hola mundo</div>")
+        res.send(`<div>Use post method and send in the body  <pre>${JSON.stringify(objetoJSON, null, 2)}</pre></div>`)
     }
 );
 router.post(
