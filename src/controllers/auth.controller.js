@@ -1,8 +1,7 @@
 import User from "../models/users.js";
 import Role from "../models/roles.js";
 import {hashPassword,comparePassword,generateToken} from "../helpers/auth.js";
-import Jwt from "jsonwebtoken";
-//import { SECRET } from "../config";
+
 export const signUp = async (req, res) => {
     try {
         const { name,lastName, email, password, roles } = req.body;
@@ -31,6 +30,7 @@ export const signUp = async (req, res) => {
         return res.status(500).json(error.message);
     }
 };
+
 export const signIn = async (req, res) => {
     try {
         console.log("req.body.email: ",req.body.email)
@@ -59,4 +59,3 @@ export const signIn = async (req, res) => {
         return res.status(500).json(error.message);
     }
 };
-export const register = async(req, res)=>{};

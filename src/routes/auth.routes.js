@@ -1,29 +1,39 @@
 import { Router } from "express";
 import * as authController from "../controllers/auth.controller.js";
 const router = Router();
-import {verifySignUp}  from "../middlewares/index.js";
+import {verifySignUp,basicAuth}  from "../middlewares/index.js";
+import signIn from "./../views/signIn.js";
+import signUp from "./../views/signUp.js";
 
-//ejemplo de agrupameinto de rutas
+// example nested routes
 router.route("/uno").get((req, res) => {
     res.send('Hola mundo routes')
 })
-let objetoJSON ={
-    "email":"prueba3",
-    "password":"prueba3",
-    "name":"prueba3",
-    "roles":["admin","user",""]
-}
+
+//  SIGN-UP
 router.get(
     "/sign-up",
     (req,res)=>{
-        res.send(`<div>Use post method and send in the body  <pre>${JSON.stringify(objetoJSON, null, 2)}</pre></div>`)
+        res.send(signUp)
     }
 );
+
 router.post(
     "/sign-up",
-    [verifySignUp.checkExistingUser,verifySignUp.checkExistingRole],
+        basicAuth.basicAuth,
+        verifySignUp.checkExistingUser,
+        verifySignUp.checkExistingRole,
     authController.signUp
 );
-router.post("/sign-in", authController.signIn);
+
+//  SIGN-IN
+router.post("/sign-in", basicAuth.basicAuth,authController.signIn);
+
+router.get("/sign-in",
+    (req,res)=>{
+        res.send(signIn)
+    }
+    );
+
 
 export default router;

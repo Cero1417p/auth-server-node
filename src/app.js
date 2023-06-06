@@ -1,7 +1,7 @@
 import express from "express";
-import cors from "cors";
+
 import authRoutes from "./routes/auth.routes.js";
-import Index from "./routes/index.js";
+import Index from "./views/index.js";
 import {createRoles} from "./helpers/loaderData.js";
 import getDate from "./helpers/getDate.js";
 
@@ -9,8 +9,9 @@ import getDate from "./helpers/getDate.js";
 const responseCreateRoles = await createRoles()
 console.log("answer to create roles => ",responseCreateRoles);
 
+
 const app = express();
-app.use(cors());
+
 app.use(express.json());
 
 
@@ -21,7 +22,7 @@ const myLogger = function (req, res, next) {
 
 app.use(myLogger)
 
-app.get("/", (req, res) => {
+app.get("/",(req, res) => {
     res.send(Index);
 });
 
