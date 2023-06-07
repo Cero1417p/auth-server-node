@@ -33,11 +33,9 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
     try {
-        console.log("req.body.email: ",req.body.email)
         const userFound = await User.
         findOne({ email: req.body.email }).
         populate("roles");
-        console.log("userFound: ",userFound)
         if (!userFound) return res.status(400).json({ message: "User or password invalid!" });
 
         const {name,lastName,email,roles} = userFound
@@ -46,7 +44,6 @@ export const signIn = async (req, res) => {
             req.body.password,
             userFound.password
         );
-        console.log("matchPassword: ",matchPassword)
 
         if (!matchPassword)
             return res.status(400).json({ message: "User or password invalid!" });
