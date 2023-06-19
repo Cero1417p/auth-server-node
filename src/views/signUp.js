@@ -5,7 +5,7 @@ let objetoJSON ={
     "roles":["admin","user",""]
 }
 const signUp=
-    `<div>Use <b>Basic-Auth</b> and post method and send in the body  
+    `<div><p>To register use <b>Basic-Auth</b> and post method and send in the body </p> 
 <pre>${JSON.stringify(objetoJSON, null, 2)}</pre></div>`
 
 export default signUp
