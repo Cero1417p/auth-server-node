@@ -1,6 +1,7 @@
 import express from "express";
 
 import authRoutes from "./routes/auth.routes.js";
+import privateRoutes from "./routes/private.routes.js";
 import Index from "./views/index.js";
 
 import { createRoles } from "./helpers/loaderData.js";
@@ -33,6 +34,8 @@ app.get("/", (req, res) => {
   res.send(Index);
 });
 app.use("/api/auth", authRoutes);
+
+app.use("/", privateRoutes);
 
 const options = {
   key: fs.readFileSync("./certificates/key.pem"),

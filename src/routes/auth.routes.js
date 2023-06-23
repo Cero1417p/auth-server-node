@@ -5,7 +5,7 @@ import { verifySignUp, basicAuth } from "../middlewares/index.js";
 import signIn from "./../views/signIn.js";
 import signUp from "./../views/signUp.js";
 
-// example nested routes
+// private route
 router.route("/uno").get((req, res) => {
   res.send("Hola mundo routes");
 });

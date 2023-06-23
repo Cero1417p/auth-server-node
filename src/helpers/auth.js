@@ -3,13 +3,9 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 export const generateToken = (user) => {
-  return jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+  return jwt.sign(user, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
-};
-
-export const verifyToken = (token) => {
-  return jwt.verify(token, process.env.JWT_SECRET);
 };
 
 export const hashPassword = async (password) => {
@@ -19,7 +15,5 @@ export const hashPassword = async (password) => {
 };
 
 export const comparePassword = async (password, hashedPassword) => {
-  console.log("=============================");
-  console.log("");
   return bcrypt.compare(password, hashedPassword);
 };

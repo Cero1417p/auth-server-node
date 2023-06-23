@@ -45,7 +45,7 @@ export const signIn = async (req, res) => {
     if (!userFound)
       return res.status(400).json({ message: "User or password invalid!" });
 
-    const { name, lastName, email, roles } = userFound;
+    const { _id, name, lastName, email, roles } = userFound;
 
     const matchPassword = await comparePassword(
       req.body.password,
@@ -55,7 +55,7 @@ export const signIn = async (req, res) => {
     if (!matchPassword)
       return res.status(400).json({ message: "User or password invalid!" });
 
-    const user = { name, lastName, email, roles };
+    const user = { _id, name, lastName, email, roles };
 
     const token = generateToken(user);
     return res.status(200).json({ token });
